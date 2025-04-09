@@ -1,15 +1,12 @@
+//import React, {Component} from "react";
 import './App.css';
+import Box from './box'
 
-//Components would go here
 
 function App() {
   return (
     <div className="App">
-      <header className="App-header">
-        <p>Components should be going in here,
-          build them
-        </p>
-      </header>
+      <Box></Box>
     </div>
   );
 }
