@@ -1,12 +1,13 @@
 //import React, {Component} from "react";
 import './App.css';
-import Box from './box'
+import { data } from './data';
+import Barchart from './barchart';
 
 
 function App() {
   return (
     <div className="App">
-      <Box></Box>
+      <Barchart data={data}></Barchart>
     </div>
   );
 }
