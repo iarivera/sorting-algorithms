@@ -38,17 +38,15 @@ class Barchart extends Component {
             .range([margin.left, width - margin.right])
             .padding(0.1)
 
-        const x_axis = d3.axisBottom(x_scale).tickSizeOuter(0);
-
         container.selectAll(".x_axis_g").data([0]).join('g')
             .attr("class", 'x_axis_g')
             .attr("transform", `translate(30, ${height})`)
-            .call(d3.axisBottom(x_scale))
+            .call(d3.axisTop(x_scale))
         
         // y-axis
         const y_scale = d3.scaleLinear()
             .domain([0, d3.max(data)])
-            .range([height, 0]);
+            .range([0, height]);
 
 
         container.selectAll("rect")
@@ -56,17 +54,18 @@ class Barchart extends Component {
             .enter()
             .append("rect")
             .attr("x", (d, i) => x_scale(i))
+            .attr("y", margin.top +margin.bottom)
             .attr("width", x_scale.bandwidth())
+            .attr("height", (d) => { return d; })
             .attr("fill", "blue")
-            .attr("height", (d) => height - y_scale(d))
-            .attr("transform", `translate(75,500)`)
+            .attr("transform", `translate(30,500)`)
         
         
     }
 
     render() {
         return (
-            <div className="title">Visualization
+            <div className="title">
                 <svg className="barchart_svg">
                     <g className="chart_g"></g>
                 </svg>
