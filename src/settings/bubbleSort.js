@@ -1,6 +1,7 @@
-import { data } from './data.js'
+import { data } from './data'
+//sorting-algorithms\src\settings\data.js
 
-function bubbleSort(array) {
+export const bubbleSort = (array) => {
     const arrayLength = array.length;
     let isSwapped;
 

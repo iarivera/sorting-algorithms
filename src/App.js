@@ -1,6 +1,6 @@
 //import React, {Component} from "react";
 import './App.css';
-import { data } from './data';
+import { data } from './settings/data';
 import Barchart from './barchart';
 
 

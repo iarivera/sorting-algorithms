@@ -1,5 +1,6 @@
 import React, {Component} from "react";
-import { data } from "./data"
+import { data } from "./settings/data"
+//import bubbleSort from './settings/bubbleSort';
 import * as d3 from "d3";
 
 class Barchart extends Component {
@@ -59,6 +60,8 @@ class Barchart extends Component {
             .attr("height", (d) => { return d; })
             .attr("fill", "blue")
             .attr("transform", `translate(30,500)`)
+
+        
         
         
     }
