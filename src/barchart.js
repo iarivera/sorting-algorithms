@@ -1,6 +1,6 @@
 import React, {Component} from "react";
 import { data } from "./settings/data"
-//import bubbleSort from './settings/bubbleSort';
+import bubbleSort from './settings/bubbleSort';
 import * as d3 from "d3";
 
 class Barchart extends Component {
@@ -42,7 +42,7 @@ class Barchart extends Component {
         container.selectAll(".x_axis_g").data([0]).join('g')
             .attr("class", 'x_axis_g')
             .attr("transform", `translate(30, ${height})`)
-            .call(d3.axisTop(x_scale))
+            .call(d3.axisBottom(x_scale))
         
         // y-axis
         const y_scale = d3.scaleLinear()
@@ -55,15 +55,32 @@ class Barchart extends Component {
             .enter()
             .append("rect")
             .attr("x", (d, i) => x_scale(i))
-            .attr("y", margin.top +margin.bottom)
+            .attr("y", function(d) { return height - d;})
             .attr("width", x_scale.bandwidth())
-            .attr("height", (d) => { return d; })
+            .attr("height", function(d) { return d; })
             .attr("fill", "blue")
-            .attr("transform", `translate(30,500)`)
+            .attr("transform", `translate(30,0)`);
 
-        
-        
-        
+        async function swap(i, j) {
+            const transition = d3.transition().duration(400);
+
+            container.transition(transition)
+                .attr("x", (d, k) => {
+                    if (k === i) return x_scale(j);
+                    if (k === j) return x_scale(i);
+                    return x_scale(k);
+                })
+                .style("opacity", (d,k) => (k === i || k === j ? 0.5 : 1));
+
+            await new Promise((resolve) => setTimeout(resolve, 400));
+            
+            container.transition()
+                .duration(0)
+                .attr("x", (d, k) => x_scale(k))
+                .style("opacity", 1);
+        }
+
+        bubbleSort(data);
     }
 
     render() {

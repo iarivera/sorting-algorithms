@@ -1,7 +1,6 @@
 import { data } from './data'
-//sorting-algorithms\src\settings\data.js
 
-export const bubbleSort = (array) => {
+export default function bubbleSort (array) {
     const arrayLength = array.length;
     let isSwapped;
 
@@ -23,12 +22,3 @@ export const bubbleSort = (array) => {
 
     return array;
 }
-
-let arr = data
-
-// Test the function
-console.log("Array:")
-console.log(arr)
-bubbleSort(arr);
-console.log("Sorted Array:");
-console.log(arr);
